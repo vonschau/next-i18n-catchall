@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import {useRouter} from 'next/router';
 
 const links = [
   { href: 'https://github.com/segmentio/create-next-app', label: 'Github' }
@@ -12,7 +13,10 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link prefetch href="/">
+        <Link href={{
+            pathname: '/[[...slug]]',
+            query: { slug: [] },
+        }} >
           <a>Home</a>
         </Link>
       </li>

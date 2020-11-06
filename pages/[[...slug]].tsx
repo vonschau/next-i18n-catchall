@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
 import {GetStaticPaths, GetStaticProps} from "next";
+import {useRouter} from "next/router";
 
 const Home = () => (
     <div>
@@ -10,7 +11,7 @@ const Home = () => (
         <Nav/>
 
         <div className="hero">
-            <h1 className="title">Welcome to Next!</h1>
+            <h1 className="title">Welcome to i18n ({useRouter().locale}) Next!</h1>
             <p className="description">
                 To get started, edit <code>pages/index.js</code> and save to reload.
             </p>
@@ -96,7 +97,35 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+    const routes = [
+        {
+            locale: 'cs',
+            slug: undefined,
+        },
+        {
+            locale: 'cs',
+            slug: ['aktuality'],
+        },
+        {
+            locale: 'en',
+            slug: undefined,
+        },
+        {
+            locale: 'en',
+            slug: ['blog'],
+        },
+    ];
+
+    const route = routes.find(r => r.locale === context.locale && JSON.stringify(r.slug) === JSON.stringify(context.params?.slug));
+
+    if (!route) {
+        return {
+            notFound: true,
+        }
+    }
+
+
     return {
         props: {},
     };
