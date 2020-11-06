@@ -91,32 +91,7 @@ const Home = () => (
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: [
-            {
-                params: {
-                    slug: [],
-                },
-                locale: 'en'
-            },
-            {
-                params: {
-                    slug: ['blog'],
-                },
-                locale: 'en'
-            },
-            {
-                params: {
-                    slug: [],
-                },
-                locale: 'cs'
-            },
-            {
-                params: {
-                    slug: ['aktuality'],
-                },
-                locale: 'cs'
-            },
-        ],
+        paths: [],
         fallback: 'blocking',
     }
 }
