@@ -100,10 +100,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
             },
             {
                 params: {
+                    slug: ['blog'],
+                },
+                locale: 'en'
+            },
+            {
+                params: {
                     slug: [],
                 },
                 locale: 'cs'
-            }
+            },
+            {
+                params: {
+                    slug: ['aktuality'],
+                },
+                locale: 'cs'
+            },
         ],
         fallback: 'blocking',
     }

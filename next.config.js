@@ -1,7 +1,7 @@
 module.exports = {
   i18n: {
     "locales": ["en", "cs"],
-    "defaultLocale": "en"
+    "defaultLocale": "cs"
   },
   webpack: config => {
     // Fixes npm packages that depend on `fs` module
