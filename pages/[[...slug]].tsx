@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
-import {GetStaticPaths} from "next";
+import {GetStaticPaths, GetStaticProps} from "next";
 
 const Home = () => (
     <div>
@@ -107,6 +107,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
         ],
         fallback: 'blocking',
     }
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    return {
+        props: {},
+    };
 }
 
 export default Home
