@@ -4,6 +4,7 @@ import Head from '../components/head'
 import Nav from '../components/nav'
 import {GetStaticPaths, GetStaticProps} from "next";
 import {useRouter} from "next/router";
+import routes from "../routes";
 
 const Home = () => (
     <div>
@@ -98,25 +99,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const routes = [
-        {
-            locale: 'cs',
-            slug: undefined,
-        },
-        {
-            locale: 'cs',
-            slug: ['aktuality'],
-        },
-        {
-            locale: 'en',
-            slug: undefined,
-        },
-        {
-            locale: 'en',
-            slug: ['blog'],
-        },
-    ];
-
     const route = routes.find(r => r.locale === context.locale && JSON.stringify(r.slug) === JSON.stringify(context.params?.slug));
 
     if (!route) {
