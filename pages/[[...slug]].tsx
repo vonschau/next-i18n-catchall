@@ -120,6 +120,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const route = routes.find(r => r.locale === context.locale && JSON.stringify(r.slug) === JSON.stringify(context.params?.slug));
 
     if (!route) {
+        console.log('Not found', JSON.stringify(context));
         return {
             notFound: true,
         }
