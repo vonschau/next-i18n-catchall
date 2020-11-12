@@ -4,7 +4,7 @@ import Head from '../components/head'
 import Nav from '../components/nav'
 import {GetStaticPaths, GetStaticProps} from "next";
 import {useRouter} from "next/router";
-import routes from "../routes";
+import paths from "../paths";
 
 const Home = () => (
     <div>
@@ -93,17 +93,15 @@ const Home = () => (
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: [],
-        fallback: 'blocking',
+        paths,
+        fallback: false,
     }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    console.log(JSON.stringify(context));
+    const path = paths.find(r => r.locale === context.locale && JSON.stringify(r.params.slug) === JSON.stringify(context.params?.slug || []));
 
-    const route = routes.find(r => r.locale === context.locale && JSON.stringify(r.slug) === JSON.stringify(context.params?.slug));
-
-    if (!route) {
+    if (!path) {
         return {
             notFound: true,
         }
