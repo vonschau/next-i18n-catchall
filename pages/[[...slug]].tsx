@@ -111,6 +111,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             time: Date.now()
         },
+        revalidate: 3600,
     };
 }
 
