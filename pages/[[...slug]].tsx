@@ -6,13 +6,13 @@ import {GetStaticPaths, GetStaticProps} from "next";
 import {useRouter} from "next/router";
 import paths from "../paths";
 
-const Home = () => (
+const Home = ({ time }: { time: number }) => (
     <div>
         <Head title="Home"/>
         <Nav/>
 
         <div className="hero">
-            <h1 className="title">Welcome to i18n ({useRouter().locale}) Next!</h1>
+            <h1 className="title">Welcome to i18n ({useRouter().locale}) Next! {time}</h1>
             <p className="description">
                 To get started, edit <code>pages/index.js</code> and save to reload.
             </p>
@@ -93,8 +93,8 @@ const Home = () => (
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths,
-        fallback: false,
+        paths: [],
+        fallback: 'blocking',
     }
 }
 
@@ -108,7 +108,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 
     return {
-        props: {},
+        props: {
+            time: Date.now()
+        },
     };
 }
 
